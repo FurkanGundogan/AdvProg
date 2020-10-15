@@ -20,7 +20,7 @@ function analyze(min=0) {
   for (let evt of EVENTS) {
     let cor = phi(tableFor(evt));
     if (Math.abs(cor) > min)
-      a.push(evt +": "+cor.toFixed(4)+ "NumberOfDays"+evt.valueOf())
+      a.push(evt +": "+cor.toFixed(4)+)
   }
   return a
 }
