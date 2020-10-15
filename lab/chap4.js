@@ -19,8 +19,17 @@ function analyze(min=0) {
   let a = [];
   for (let evt of EVENTS) {
     let cor = phi(tableFor(evt));
-    if (Math.abs(cor) > min)
-      a.push(evt +": "+cor.toFixed(4)+)
+    if (Math.abs(cor) > min){
+      let counter=0
+      JOURNAL.forEach(element => {
+        element.events.forEach(e => {
+          if(e==evt)
+          counter++;
+        });
+      });
+
+      a.push(evt +": "+cor.toFixed(4)+" "+counter)
+    }
   }
   return a
 }
