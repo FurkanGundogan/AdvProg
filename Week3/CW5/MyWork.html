@@ -74,21 +74,28 @@ function init() {
 
   
 function ctrlWorkandWeekend(){
-  for (let x of JOURNAL){
-      for (let y of x.events){
-        if (y.includes("work") || y.includes("weekend")){
-         console.log(y)
-        }
-      }
-    }
+  let sonuc="Tüm elemanlar work ve weekend e sahip"
+ JOURNAL.forEach(element => {
+   if(element.events.includes("work") || element.events.includes("weekend")){
+     
+   }else{
+    sonuc=element + "bekleneni karşılamadı."
+   }
+ });
+
+ return sonuc
 }
 
 
 </script>
-
+<h2>Celsius-Fahrenheit Converter</h2>
 Celsius:
 <input type="number" id="cels" value="0" onchange="celClick()">
 Fahrenheit:<input type="number" id="fah" value="0" onchange="fahClick()">
+
+<img src=https://i.hizliresim.com/xJFb4V.png>
+<pre id="MapCode"></pre>
+
 <script>
     function celClick(){
       let myTemp= new Temperature(Number(cels.value))      
@@ -101,7 +108,34 @@ Fahrenheit:<input type="number" id="fah" value="0" onchange="fahClick()">
 
     }
 
+    MapCode.innerText=myMapFunc
+    
+    function myMapFunc(){
+      let mapOfJournals = new Map();
+      let otherEvents=new Set()     
+       
+      let number = 0;
+      JOURNAL.forEach(j => {
+        j.events.forEach(e => {
+          otherEvents.add(e)
+        });
+      });
+      
+      otherEvents.forEach(element => {
+        let count=0  
+        JOURNAL.forEach(j => {
+            if(j.events.includes(element) && j.events.includes("weekend")){
+              count++
+            }
+          });
+          mapOfJournals.set(element,count)
+        
+      });
 
+      return mapOfJournals
+
+    }
+    
 
 
 </script>
