@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://blm-fsmvu.github.io/305/work/Files.html -->
+<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+    <title>Remote and Local Files </title>
+    <style>
+        body { max-width: 500px; }
+        #remote { width: 90%; }
+    </style>
+</head>
+
+<body>
+<p><b id="docName">Remote and Local Files</b> &nbsp; <a href="https://blm-fsmvu.github.io/305/work/Reading_files">Reference</a>
+</p>
+<p>Remote file <br>
+  <input type="text" id="remote" size="35" value="https://avatars3.githubusercontent.com/u/43653193?s=460&u=2dbee398b935c7c86714050e6f68b2fe47328aa5&v=4">
+</p>
+<p><input type="file" id="local" multiple="" onchange="fileSelect()"></p>  
+<pre id="out"></pre>
+<hr>
+<b>Sample code</b>
+<pre id="sample">function fileSelect() {<br>    fetch(remote.value).then(r =&gt; r.blob())<br>    .then(checkFiles) //called with Blob b<br>}<br>function checkFiles(b) {<br>    let a = [...local.files]<br>    //Implement this<br>    out.innerText += 'Implement this '<br>}</pre>
+
+<script>
+"use strict";
+function fileSelect() {
+    fetch(remote.value).then(r => r.blob())
+    .then(checkFiles) //called with Blob b
+}
+function checkFiles(b) {
+    let a = [...local.files]
+    let x = remote.value.split("?");
+    out.innerText += "Remote File: "+x[0]+"\n"   
+    let filecount=0
+    a.forEach(element => {
+        filecount+=1;       
+            });
+    out.innerText += "Choose Files: "+filecount+"\n"
+    let eslesen=0
+    let control=false
+    a.forEach(element => {
+        out.innerText += element.name+"\n"        
+        if((element.type == b.type) && (element.size==b.size)){            
+            eslesen=element
+            control=true
+        }      
+            });
+            if(control){
+                out.innerText += "\nResult: "+filecount+" items checked :"
+                +eslesen.name+"\n is the same as "+x[0]
+            }
+            else{
+                out.innerText += "\nResult: "+filecount+
+                " items checked all files are different"
+            }
+}
+const L = console.log
+docName.innerText = document.title
+sample.innerText = fileSelect+"\n"+checkFiles
+</script>
+
+
+</body></html>
