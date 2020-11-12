@@ -38,7 +38,7 @@ function makePage() {
   let btn = elt("button", "Arttir")
   btn.onclick=increment
   let bold = elt("b", "Sample code")
-  let pre  = elt("pre", increment,inputChange)
+  let pre  = elt("pre", increment,inputChange,makePage)
 
   document.title = TITLE
   document.body = elt("body", 
