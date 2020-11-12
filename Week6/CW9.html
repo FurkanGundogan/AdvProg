@@ -1,0 +1,105 @@
+
+<!-- saved from url=(0052)https://blm-fsmvu.github.io/305/work/Page_by_JS.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" href="https://blm-fsmvu.github.io/305/images/icon192.png">
+
+<script>
+"use strict";
+function elt(type, ...list) {
+  let e = document.createElement(type)
+  for (let c of list) {
+    e.appendChild(c instanceof Element? c
+             : document.createTextNode(c))
+  }
+  return e
+}
+const BOOK_REF = 
+  "http://eloquentjavascript.net/14_dom.html#h_AlX6HES+2D",
+  TITLE = "Counting Page made by JavaScript",
+  TEXT = "No book can ever be finished. While working "
+    +"on it we learn just enough to find it immature "
+    +"the moment we turn away from it.",
+  AUTH = "Karl Popper", YEAR = ", 1950",
+  DESC = ", preface to the second editon of ",
+  VAL1="0",
+  BOOK = "The Open Society and Its Enemies";
+  
+function makePage() {
+//<p>— <b>AUTH</b>DESC<i>BOOK</i>YEAR</p>
+
+  let parag1 = elt("p")
+  parag1.id="out"
+  parag1.style.color="blue"
+  let input1 = elt("input")
+  input1.id="inp"
+  input1.type="number"
+  input1.onchange=inputChange
+  let btn = elt("button", "Arttir")
+  btn.onclick=increment
+  let bold = elt("b", "Sample code")
+  let pre  = elt("pre", increment,inputChange)
+
+  document.title = TITLE
+  document.body = elt("body", 
+      elt("h2", TITLE), 
+      elt("hr"), 
+      elt("div",input1,btn,parag1),
+      elt("div",bold,pre)
+    )
+  document.body.style.maxWidth = "420px"
+}
+const tree = [], SPACE = '&emsp;', MAX = 26;
+function toTree(e, space) {
+  let c = e.firstChild
+  if (!c || c instanceof Element) c = ''
+  else c = SPACE+c.textContent
+  if (c.length>MAX+3) c = c.substring(0, MAX)+'…'
+  console.log(space.length, e.localName, c)
+  tree.push(space+'+ '+e.tagName+c)
+  for (let c of e.children)
+      toTree(c, space+SPACE)
+}
+makePage(); toTree(document.body, '');
+let t = elt("p"); t.style.color = "green";
+t.innerHTML = tree.join('<br>');
+document.body.append(t);
+
+function increment() {
+    let c = Number(out.innerText)+1
+    console.log("counter = "+c);
+    out.innerText = c;
+}
+function inputChange()
+{
+  document.getElementById("out").innerText =
+  Number(document.getElementById("inp").value);
+}
+
+ //sample.innerText = increment.toString();
+ out.innerText = 0; increment();
+</script><title>Page made by JavaScript</title>
+<!-- The document body is made by the script above --></head><body style="max-width: 420px;"><h2>Page made by JavaScript</h2><hr><blockquote><span style="color: blue;">No book can ever be finished. While working on it we learn just enough to find it immature the moment we turn away from it.</span><p>— <b>Karl Popper</b>, preface to the second editon of <i>The Open Society and Its Enemies</i>, 1950</p></blockquote><hr><div><b>Sample code</b><pre>function makePage() {
+//&lt;p&gt;— &lt;b&gt;AUTH&lt;/b&gt;DESC&lt;i&gt;BOOK&lt;/i&gt;YEAR&lt;/p&gt;
+  let para = elt("p", "— ",
+        elt("b", AUTH), DESC,
+        elt("i", BOOK), YEAR
+      ) 
+  let span = elt("span", TEXT)
+  span.style.color = "blue"
+  let bold = elt("b", "Sample code")
+  let pre  = elt("pre", makePage)
+  let link = elt("a", "Creating nodes")
+  link.href = BOOK_REF
+  document.title = TITLE
+  document.body = elt("body", 
+      elt("h2", TITLE), 
+      elt("hr"), 
+      elt("blockquote", span, para), 
+      elt("hr"), 
+      elt("div", bold, pre), 
+      elt("div", "Ref: ", link),
+      elt("hr")
+    )
+  document.body.style.maxWidth = "420px"
+}</pre></div><div>Ref: <a href="http://eloquentjavascript.net/14_dom.html#h_AlX6HES+2D">Creating nodes</a></div><hr><p style="color: green;">+ BODY<br> + H2 Page made by JavaScript<br> + HR<br> + BLOCKQUOTE<br>  + SPAN No book can ever be …<br>  + P — <br>   + B Karl Popper<br>   + I The Open Society and…<br> + HR<br> + DIV<br>  + B Sample code<br>  + PRE function makePage() …<br> + DIV Ref: <br>  + A Creating nodes<br> + HR</p></body><body></body></html>
