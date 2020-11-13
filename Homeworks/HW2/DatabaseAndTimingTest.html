@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Homework 2 - 1821221005 Furkan Gundogan </title>
+
+  <style>
+    body { max-width: 440px; }
+    .link {
+        color: blue;
+        cursor: pointer;
+        font-style: italic;
+    }
+    .liste {
+        visibility: hidden;
+        font: 11px arial, sans-serif;
+        color: white;
+        background: blue;
+        cursor: text;
+        padding: 6px;
+        position: absolute;
+        height: 116px;
+        overflow-y: auto;
+    }
+    .link:hover .liste { 
+        visibility: visible; 
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+<h3>1.  Student Database:</h3>
+<hr>
+<p>Student ID: <input id="stdIdInput" value="116690070" type=number>  <button onClick='examSchedule()'>Get Exam schedule</button><br>
+<p>Schedule:</p><p id="scheduleText"></p>
+</p>
+<hr>
+<p>Course ID: <input id="crsIdInput" value="FRE 202" type=text>  <button onClick='studentListOfCourse()'>Get Student List</button><br>
+<p>Student list:</p><p id="studentListText"></p>
+</p>
+<hr>
+<p>Exam Room: <input id="exroomIdInput" value="BZ013" type=text>  <button onClick='courseListOfRoom()'>Get Course List</button><br>
+<p>Course list:</p><p id="courseListText"></p>
+</p>
+<hr>
+<p>Room ID: <input id="roomIdInput" value="BZ013" type=text>  <button onClick='courseCountOfRoom()'>Get Course Count</button><br>
+<p>Total Course:</p><p id="courseCountText"></p>
+</p>    
+<hr>
+<p>Date: <input id="dateInput" value="15.01.2017" type=text>  <button onClick='examsOfDate()'>Get Exams</button><br>
+<p>Exam List:</p><p id="examListText"></p>
+</p>    
+<hr>
+<h3>2.  Timing Test</h3>
+<p>Student ID: <input id="sId" value="116690070" type=number>  <button onClick='startTest()'>Start Test</button><br>
+<p>Report of Test:</p><p id="repText"></p>
+</p>
+<hr />
+<b>Sample code</b>
+<pre id=sample></pre>
+<hr />
+
+<script>
+"use strict";
+class Student {
+    constructor(id, name, gpa, ...list) {
+        if (!id) throw "Undefined Student id"
+        this.id = id; this.name = name;
+        this.gpa = gpa.padEnd(4,'0'); 
+        this.list = list
+    }
+    toString() {
+        return this.id+' '+this.name+' '+this.gpa
+    }
+    static fromString(s) {
+        return new Student(...s.split('\t'))
+    }
+}
+class Course {
+    constructor(id,time,date,...rooms) {
+        this.id=id
+        this.time=time
+        this.date=date
+        this.rooms=rooms   
+    }
+    toString() {
+        return this.id+" "+this.time+" "+this.date;
+    }
+    static fromString(s) {
+        return new Course(...s.split('\t'))
+    }
+}
+const stdMap = new Map(), crsMap = new Map(); //global
+function makeData(txt, Maker, map) {
+    map.clear()
+    for (let line of txt.split('\n')) {
+        if (!line) continue
+        let std = Maker.fromString(line)
+        map.set(std.id, std)
+    }
+    
+    return map;
+}
+const LINK = "https://maeyler.github.io/JS/data/"
+function readStudents() {
+    fetch(LINK+"Students.txt").then(r => r.text())
+    .then(t => makeData(t, Student, stdMap))
+}
+function readCourses() {
+    fetch(LINK+"Courses.txt").then(r => r.text())
+    .then(x => makeData(x,Course,crsMap))
+}
+
+function examSchedule() {
+    let st= stdMap.get(stdIdInput.value)
+    if(st==null){
+        scheduleText.innerHTML=
+        '<p style="color:red">OgrenciBulunamadi<p>'
+            }
+    else{
+        scheduleText.innerHTML=""
+        st.list.forEach(element => {
+        let exam = crsMap.get(element)
+        scheduleText.innerHTML+="Course: "+exam.id+
+        " Date: "+exam.date+"<br>"
+    });
+    }      
+}
+function studentListOfCourse() {
+    studentListText.innerHTML=""
+    if(crsMap.get(crsIdInput.value)){
+    let stddArray=[...stdMap.values()]
+    for (let x of stddArray)if(x.list.includes(crsIdInput.value)){
+    studentListText.innerHTML+=("<b>ID: </b>"+x.id+"<b> Name:</b>"
+    +x.name+"<br>")}  
+    }
+    else{studentListText.innerHTML=
+    '<p style="color:red">Course Id Hatali<p>'}             
+}
+function courseListOfRoom() {
+    courseListText.innerHTML=""
+    let crsArray=[...crsMap.values()]
+    for (let x of crsArray){
+        if(x.rooms.includes(exroomIdInput.value)){
+            courseListText.innerHTML+=(x.id+"<br>")
+            }
+        }
+    if(courseListText.innerHTML==""){courseListText.innerHTML=
+    '<p style="color:red">Room Id Hatali<p>'}
+}
+function courseCountOfRoom() {
+    let counter=0
+    courseCountText.innerHTML=""
+    let crsArray=[...crsMap.values()]
+    for (let x of crsArray){
+        if(x.rooms.includes(roomIdInput.value))counter++
+        }
+    courseCountText.innerHTML+=counter
+}
+function examsOfDate(){
+    let counter=0
+    examListText.innerHTML=""
+    let crsArray=[...crsMap.values()]
+    for (let x of crsArray)if(x.date==dateInput.value){
+        examListText.innerHTML+=x.id+"<br>";
+        counter++
+        }
+    if(counter==0)examListText.innerHTML+=
+    "<b>There are no exams on given date</b>"
+    else examListText.innerHTML+=
+    "<b>There are "+counter+" Exams on given date</b>"
+}
+function startTest(){
+    
+    repText.innerHTML=""
+    let counter=0
+    let t1=new Date()
+    for (let i = 0; i < 10000; i++) {     
+        if(stdMap.has((Number(sId.value)+i).toString())){
+            counter++
+            }
+    }
+    console.log(counter+" time1: "+(new Date()-t1)+"ms\n")
+    repText.innerHTML+="<b>1.</b> stdMap.has(id)  => Found <i>"
+    +counter+"</i> students in <i>"+(new Date()-t1)+"ms .</i><br>"
+    let counter2=0
+    let t2=new Date()
+    for (let i = 0; i < 10000; i++) {     
+        if([...stdMap.keys()].includes((Number(sId.value)+i)
+        .toString())){
+            counter2++
+            }
+    }
+    repText.innerHTML+="<b>2.</b> keys.includes(id) => Found <i>"
+    +counter2+"</i> students in <i>"+(new Date()-t2)+"ms .</i>\n"
+
+}
+title.innerText = document.title
+sample.innerText = Course+"\n"+readCourses+"\n"+examSchedule+"\n"+studentListOfCourse+"\n"+courseListOfRoom+"\n"+courseCountOfRoom+"\n"+examsOfDate+"\n"+startTest+"\n"
+readStudents(); readCourses();
+</script>
+</body>
+</html>
