@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="icon" href="">
+  <title>GitHub Users</title>
+  <style>
+    body {
+        max-width: 300px;
+        
+    }
+    .img2 {
+        padding-right: 12px; 
+        width: 300px;
+        display:block;
+    }
+    .icon{
+      width: 20px;
+      padding-right: 8px;
+      display: inline;
+    }
+    .myname{
+      font-size: 22px;
+      font-style: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id=title></h2>
+<input type=text id=usr value=blm-fsmvu onChange="readUser()">
+<p id=out style="display: block;"></p>
+<hr />
+
+<script>
+"use strict";
+function error(t) {
+    out.style.color = 'red'
+    out.innerText = t; throw t
+}
+async function toJSON(url) {
+    let r = await fetch(url)
+    if (!r.ok) error(r.statusText)
+    return r.json()
+}
+async function readUser() {
+    const BR = "<BR>", 
+      URL = "https://api.github.com/users/"
+    let u = await toJSON(URL+usr.value)
+    if (!u || !u.login) 
+      error(usr.value+' not found')
+    //u.login is the same as usr.value
+    out.style.color = ''
+    out.innerHTML = ''
+    //start with a tiny image
+    let i = document.createElement("img")
+    i.className="img2"
+    i.src = u.avatar_url
+    i.align = "left"
+    out.appendChild(i)
+
+    let mname = (u.name? u.name : u.login) 
+    let p0 = document.createElement("p")
+    p0.innerHTML=mname
+    p0.className="myname"
+    out.appendChild(p0)    
+
+
+    let username=u.login
+    let p = document.createElement("p")
+    p.innerHTML=username
+    out.appendChild(p)
+ 
+
+    let iconComp=document.createElement("img")
+    iconComp.src="https://icon-library.com/images/business-png-icon/business-png-icon-19.jpg"
+    iconComp.className="icon"
+    out.appendChild(iconComp)
+
+    let comp=(u.company? u.company:"No-Company")
+    let p2 = document.createElement("p")
+    p2.style.display="inline"
+    p2.innerHTML=comp
+    out.appendChild(p2)
+    out.innerHTML+=BR
+
+   
+    let iconLoc=document.createElement("img")
+    iconLoc.src=" https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-21-512.png"
+    iconLoc.className="icon"
+    out.appendChild(iconLoc)
+
+    let loc=(u.location? u.location:"Location Not Found")
+    let p3 = document.createElement("p")
+    p3.style.display="inline"
+    p3.innerHTML=loc
+    out.appendChild(p3) 
+    out.innerHTML+=BR
+
+    let iconmail=document.createElement("img")
+    iconmail.src="https://www.freepngimg.com/download/gmail/66517-google-icons-computer-suite-email-gmail.png"
+    iconmail.className="icon"
+    out.appendChild(iconmail)
+
+    let mail=(u.email? u.email:"Mail Not Found")
+    let a = document.createElement("a")
+    a.href="https://outlook.live.com/mail/0/inbox"
+    a.target="NewTab"
+    a.innerHTML=mail
+    out.appendChild(a)
+
+    out.innerHTML+=BR
+
+    let iconConn=document.createElement("img")
+    iconConn.src="https://cdn.pixabay.com/photo/2012/04/10/23/59/connection-27185_960_720.png"
+    iconConn.className="icon"
+    out.appendChild(iconConn)
+    
+
+    let blog=(u.blog? u.blog:"Blog Not Found")
+    let a2 = document.createElement("a")
+    a2.href=blog
+    a2.target="NewTab"
+    a2.innerHTML=blog
+    out.appendChild(a2)
+
+   
+}
+    title.innerText = document.title   
+    out.innerText = "Reading data"
+    readUser()
+</script>
+
+</body>
+</html>
