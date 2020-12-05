@@ -1,10 +1,10 @@
 {
-  "name": "BLM305",
-  "short_name": "BLM305",
+  "name": "FurkanAdvProg",
+  "short_name": "FurkanAdvProg",
   "start_url": "Prologue.html",
   "display": "standalone",
-  "background_color": "orange",
-  "theme-color": "orange",
+  "background_color": "blue",
+  "theme-color": "blue",
   "icons": [
     {
       "src": "images/JS.png",
