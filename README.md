@@ -1,2 +1,2 @@
 # AdvProg
-https://furkangundogan.github.io/AdvProg/
+https://furkangundogan.github.io/AdvProg/Prologue.html
