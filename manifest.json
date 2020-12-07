@@ -1,7 +1,7 @@
 {
   "name": "FurkanAdvProg",
   "short_name": "FurkanAdvProg",
-  "start_url": "Prologue.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "blue",
   "theme-color": "blue",
