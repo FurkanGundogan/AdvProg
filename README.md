@@ -1,5 +1,5 @@
 # AdvProg
-:link: [<i>Click for Prologue</i>](https://furkangundogan.github.io/AdvProg/Prologue.html)
+[<i>Click for Prologue</i>](https://furkangundogan.github.io/AdvProg)
 <h2 id="class-work"> Class Work</h3>
 
 <ul>
