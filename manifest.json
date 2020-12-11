@@ -7,7 +7,7 @@
   "theme-color": "blue",
   "icons": [
     {
-      "src": "images/JS.png",
+      "src": "images/icon192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
