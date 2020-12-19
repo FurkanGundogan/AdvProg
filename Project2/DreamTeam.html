@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="Furkan Gundogan, Istanbul, 2020">
+
+  <title>DreamTeam</title>
+
+
+  <style>
+
+
+  </style>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="dropdown-select.css">
+
+<body>
+  <div class="top">
+    <div class="top-contents1">
+      <div class="filters">
+        <span class="filter-title">Position</span>
+        <div class="dropdown dropdown-dark">
+          <select id="pos" name="position" class="dropdown-select">
+            <option>ALL</option>
+            <option>FV</option>
+            <option>MID</option>
+            <option>DEF</option>
+            <option>GK</option>
+          </select>
+        </div>
+      </div>
+      <div class="filters">
+        <span class="filter-title">Nation</span>
+        <div class="dropdown dropdown-dark">
+          <select id="nat" name="nation" class="dropdown-select">
+            <option>ALL</option>
+            <option>TR</option>
+            <option>ARG</option>
+            <option>ENG</option>
+            <option>POR</option>
+            <option>POL</option>
+            <option>POL</option>
+            <option>BR</option>
+          </select>
+        </div>
+      </div>
+      <div class="filters">
+        <span class="filter-title">Max Age</span>
+        <div class="dropdown dropdown-dark">
+          <select id="nat" name="nation" class="dropdown-select">
+            <option>ALL</option>
+            <option>35</option>
+            <option>30</option>
+            <option>25</option>
+            <option>20</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="top-contents2">
+      <div class="filters">
+        <span class="filter-title">Name</span>
+        <input class="inputs " type="text" placeholder="Name">
+      </div>
+
+      <div class="filters">
+        <span class="filter-title">Club</span>
+        <input class="inputs " type="text" placeholder="Club">
+
+      </div>
+      
+     <div class="filters">
+     
+      <button id="btn2" class=" buttons inputs ">ARAŞTIR</button>
+     </div>
+      
+
+    </div>
+
+  </div>
+
+<div class="mytable">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NAME</th>
+        <th scope="col">RATING</th>
+        <th scope="col">POS</th>
+        <th scope="col">NATION</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+        <td>@mdo</td>
+        
+        
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+        <td>@mdo</td>
+        
+        
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+        <td>@mdo</td>
+        
+        
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+        <td>@mdo</td>
+        
+        
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+<div class="saha">
+  <img class="gorsel" src="pitch.png">
+</div>
+
+</body>
+
+<script>
+  "use strict";
+  class Player {
+    constructor(id, name, pos, r, c) {
+      this.id = id;
+      this.name = name;
+      this.r = r;
+      this.pos = pos;
+      this.c = c;
+    }
+    toString() {
+      return this.id + " " + this.name + " " + this.pos + " " + this.r + " " + this.c;
+    }
+    static fromString(s) {
+      return new Player(...s.split('\t'))
+    }
+  }
+  let playerMap = new Map(); //global
+  function makeData(txt, Maker, map) {
+    map.clear()
+    for (let line of txt.split('\n')) {
+      if (!line) continue
+      let std = Maker.fromString(line)
+      map.set(std.id, std)
+    }
+
+    return map;
+  }
+  const LINK = "https://furkangundogan.github.io/dataforproject/datafile/"
+
+  function getPlayers() {
+    fetch(LINK + "players.txt").then(r => r.text())
+      .then(x => makeData(x, Player, playerMap))
+  }
+
+
+  getPlayers();
+</script>
+
+</html>
