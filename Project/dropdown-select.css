@@ -48,26 +48,29 @@ padding-bottom: 8px
 }
 
 .mytable{
+  display: block;
   width: 95%;
   margin-right: 2.5%;
   margin-left: 2.5%;
 }
+
 .table{
   width: 100%;
-  
-  border-color: black;
-
+ font-size: 0.63em;
 }
+
 table, th, td {
-  
   border: 2px solid black;
 }
-.table .thead-dark th {
-  
-  color: #fff;
-  background-color: #000000;
+.table .thead-dark th { 
+  color: rgb(0, 0, 0);
+  background-color: gold;
   border-color: #000000;
 }
+tr td button{
+  width: 100%;
+}
+
 .filters{
   background: yellow;
     width: 50%;
@@ -206,11 +209,36 @@ table, th, td {
 }
 .bottompart{
   width: 100%;
-  display: inline-block;
+  display: flex;
 }
 .bottompart .filters{
   background-color: ivory;
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 5px;
+}
+
+.bottompart .bottomLeft{
+  display: block;
+  width: 60%;
+}
+.bottompart .bottomRight{
+  display: block;
+  width: 35%;
+}
+.bottomRight{
+  margin-top: 8px;
+}
+.pl{
+  border: 1px solid;
+  border-color: black;
+  display: flex;
+}
+.plp,.delp{
+  margin: 2px;
+}
+.delp{
+  border: 1px solid;
+  border-color: black;
+  color: red;
 }
