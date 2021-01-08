@@ -1,6 +1,6 @@
 # AdvProg
 [<i>Click for Prologue</i>](https://furkangundogan.github.io/AdvProg)
-<h2 id="ref">Project:</h3>
+<h2 id="ref">Project</h3>
 
 <ul>
            <li><a href="https://furkangundogan.github.io/AdvProg/Project/DreamTeam.html">Term Project - Dream Team</a></li>
