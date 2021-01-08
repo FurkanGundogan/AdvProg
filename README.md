@@ -1,8 +1,23 @@
 # AdvProg
 [<i>Click for Prologue</i>](https://furkangundogan.github.io/AdvProg)
+<h2 id="ref">Project:</h3>
+
+<ul>
+           <li><a href="https://furkangundogan.github.io/AdvProg/Project/DreamTeam.html">Term Project - Dream Team</a></li>
+</ul>
+<h2 id="homework">Homework</h3>
+
+<ul>
+          <li><a href="https://furkangundogan.github.io/305/anim/Animation.html">HW#3 – Git and Animation</a></li>
+          <li><a href="https://furkangundogan.github.io/AdvProg/Homeworks/HW2/DatabaseAndTimingTest.html">HW#2 –Database And Timing</a></li>
+          <li><a href="https://furkangundogan.github.io/AdvProg/Homeworks/HW1/Homework1.html">HW#1 – Poisson Table</a></li>
+</ul>
 <h2 id="class-work"> Class Work</h3>
 
 <ul>
+        <li><a href="https://furkangundogan.github.io/AdvProg/Week12/CW15.html">CW#15 – GoogleDrive API</a></li>
+        <li><a href="https://furkangundogan.github.io/AdvProg/Week11/CW14.html">CW#14 – OpenStreetMap API</a></li>
+        <li><a href="https://furkangundogan.github.io/AdvProg/Week10/CW13.html">CW#13 – Weather API</a></li>
         <li><a href="https://furkangundogan.github.io/AdvProg/Week9/CW12.html">CW#12 – GitHub User API</a></li>
         <li><a href="https://furkangundogan.github.io/AdvProg/Week8/CW11.html">CW#11 – Event Listeners</a></li>
         <li><a href="https://furkangundogan.github.io/AdvProg/Week7/SubtleCrypto.html">CW#10 – ArrayBuffer & Crypto</a></li>
@@ -16,24 +31,4 @@
         <li><a href="https://furkangundogan.github.io/AdvProg/Week2/CW2/Length.html">CW#2.2 – Cm-Inch Converter</a></li>
         <li><a href="https://furkangundogan.github.io/AdvProg/Week2/CW2/Counting.html">CW#2.1 – Counter</a></li>
 
-</ul>
-
-<h2 id="homework">Homework</h3>
-
-<ul>
-          <li><a href="https://furkangundogan.github.io/305/anim/Animation.html">HW#3 – Git and Animation</a></li>
-          <li><a href="https://furkangundogan.github.io/AdvProg/Homeworks/HW2/DatabaseAndTimingTest.html">HW#2 –Database And Timing</a></li>
-          <li><a href="https://furkangundogan.github.io/AdvProg/Homeworks/HW1/Homework1.html">HW#1 – Poisson Table</a></li>
-</ul>
-
-<h2 id="ref">Project:</h3>
-
-<ul>
-           <li><a href="#">Term Project - ...</a></li>
-</ul>
-
-<h2 id="ref">Ref:</h3>
-
-<ul>
-       <li><a href="https://github.com/maeyler/">Github: maeyler</a></li>
 </ul>
